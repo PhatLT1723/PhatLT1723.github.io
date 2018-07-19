@@ -1,0 +1,5 @@
+<div class="collection">
+  <%= link_to("Users", root_path, class: "collection-item #{'active' if !request.path.include?('groups') && !request.path.include?('questions')}" ) %>
+  <%= link_to("Groups", groups_path, class: "collection-item #{'active' if request.path.include?('groups')}" ) %>
+  <%= link_to("Questions", questions_path, class: "collection-item #{'active' if request.path.include?('questions')}" ) %>
+</div>

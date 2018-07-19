@@ -1,0 +1,187 @@
+<% if flash[:notice] %>
+    <div class="notice">
+        <%= flash[:notice] %>
+    </div>
+    <% end %>
+        <div class="create_component">
+            <a href="<%= new_group_path %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s6"><a href="#group_active" class="active">Active Group</a></li>
+                    <li class="tab col s6"><a href="#group_deleted">Deleted Group</a></li>
+                </ul>
+            </div>
+            <div id="group_active" class="col s12" style="padding-top: 20px;">
+                <div class="row">
+                    <div class="container-flush">
+                        <div class="col l12 m12 s12 z-depth-2">
+                            <div class="col l12 m12 s12">
+                                <table class="highlight centered bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                ID
+                                            </th>
+                                            <th>
+                                                GroupName
+                                            </th>
+                                            <th>
+                                                SubId
+                                            </th>
+                                            <th>
+                                                Password
+                                            </th>
+                                            <th>
+                                                UserId
+                                            </th>
+                                            <th>
+                                                Total Questions
+                                            </th>
+                                            <th>
+                                                Created Date
+                                            </th>
+                                            <th>
+                                                Updated Date
+                                            </th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% @groups.each do |group|%>
+                                            <% if group.active == true %>
+                                                <tr>
+                                                    <td>
+                                                        <%= group.groupId%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.groupName%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.subId || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.password || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.username%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.totalQuestions || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.createdDate || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.updatedDate || "empty"%>
+                                                    </td>
+                                                    <td style="padding-top: 5px;">
+                                                        <a class="waves-effect waves-light btn" href="<%= edit_group_path(group.groupId) %>">
+                    <i class="large material-icons">mode_edit</i>
+                  </a>
+                                                        <%= link_to (group_path(group.groupId)), method: :delete,
+                                  data: { confirm: "You sure?" }, class: "waves-effect waves-light btn red accent-4" do %>
+                                                            <i class="large material-icons">delete</i>
+                                                            <% end %>
+                                                    </td>
+                                                </tr>
+                                                <% end %>
+                                                    <% end %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="center">
+                            <%= paginate @groups, theme: 'twitter-bootstrap-3' %>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="group_deleted" class="col s12" style="padding-top: 20px;">
+              <div class="row">
+                    <div class="container-flush">
+                        <div class="col l12 m12 s12 z-depth-2">
+                            <div class="col l12 m12 s12">
+                                <table class="highlight centered bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                ID
+                                            </th>
+                                            <th>
+                                                GroupName
+                                            </th>
+                                            <th>
+                                                SubId
+                                            </th>
+                                            <th>
+                                                Password
+                                            </th>
+                                            <th>
+                                                UserId
+                                            </th>
+                                            <th>
+                                                Total Questions
+                                            </th>
+                                            <th>
+                                                Created Date
+                                            </th>
+                                            <th>
+                                                Updated Date
+                                            </th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% @groups.each do |group|%>
+                                            <% if group.active == false %>
+                                                <tr>
+                                                    <td>
+                                                        <%= group.groupId%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.groupName%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.subId || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.password || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.userId%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.totalQuestions || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.createdDate || "empty"%>
+                                                    </td>
+                                                    <td>
+                                                        <%= group.updatedDate || "empty"%>
+                                                    </td>
+                                                    <td style="padding-top: 5px;">
+                                                        <%= link_to (group_path(group.groupId)), method: :delete,
+                                  data: { confirm: "You sure?" }, class: "waves-effect waves-light btn blue lighten-3" do %>
+                                                            <i class="large material-icons">backup</i>
+                                                            <% end %>
+                                                    </td>
+                                                </tr>
+                                                <% end %>
+                                                    <% end %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

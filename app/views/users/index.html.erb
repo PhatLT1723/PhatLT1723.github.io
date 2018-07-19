@@ -1,0 +1,79 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+  <div class="create_component">
+    <a href="<%= new_user_path %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+  </div>
+<div class="row">
+  <div class="container-flush">
+    <div class="col l12 m12 s12 z-depth-2">
+      <div class="col l12 m12 s12">
+        <table class="highlight centered bordered">
+          <thead>
+            <tr>
+              <th>
+                ID
+              </th>
+              <th>
+                Username
+              </th>
+              <th>
+                Roles
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Display Name
+              </th>
+              <th>
+                Total points
+              </th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user|%>
+              <tr>
+                <td>
+                  <%= user.userId%>
+                </td>
+                 <td>
+                  <%= user.username%>
+                </td>
+                 <td>
+                  <%= user.roleId%>
+                </td>
+                 <td>
+                  <%= user.email%>
+                </td>
+                 <td>
+                  <%= user.displayName%>
+                </td>
+                 <td>
+                  <%= user.totalPoints%>
+                </td>
+                <td style="padding-top: 5px;">
+                  <a class="waves-effect waves-light btn" href="<%= edit_user_path(user.userId) %>">
+                    <i class="large material-icons">mode_edit</i>
+                  </a>
+
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+                    <div class="col s12">
+                        <div class="center">
+                            <%= paginate @users, theme: 'twitter-bootstrap-3' %>
+                        </div>
+
+                    </div>
+
+                </div>

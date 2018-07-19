@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PET Admin</title>
+    <%= csrf_meta_tags %>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container-flush">
+      <div class="navbar">
+        <%= render 'shared/header' %>
+      </div>
+      <div class="row">
+        <div class="col s12 m4 l2" style="padding-right: 0px;">
+          <%= render 'shared/menu' %>
+        </div>
+        <div class="col s12 m12 l10" style="margin-top: 30px;">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
